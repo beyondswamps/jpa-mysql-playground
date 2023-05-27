@@ -16,12 +16,19 @@ public class Application {
         em.getTransaction().commit();
         System.out.println("st1 created and persisted: " + st1);
 
-
         em.getTransaction().begin();
-        em.detach(st1);
-        em.persist(st1);
-        em.getTransaction().commit();
+
+        em.remove(st1);
         System.out.println(em.contains(st1));
+        st1.setS_id(9999999);
+        em.detach(st1);
+        em.detach(st1);
+        em.detach(st1);
+        System.out.println(em.contains(st1));
+        em.getTransaction().commit();
+        em.detach(st1);
+        System.out.println("st1: " + st1);
+
         em.close();
         emf.close();
     }
